@@ -1,0 +1,374 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{polyglossia}
+\setdefaultlanguage{spanish}
+%\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsfonts,latexsym,cancel}
+\usepackage{color}
+\usepackage{rotating}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{lastpage}
+\usepackage{eso-pic}
+
+%---------------------------------------------------------------------------------------------------
+% Estilo de la página
+
+\textheight = 26cm
+\textwidth = 18.75cm
+\topmargin = -1cm
+\oddsidemargin = -1.25cm
+
+\setlength{\parindent}{0cm}
+
+\pagestyle{empty}
+
+\AddToShipoutPicture{
+	\begin{tikzpicture}
+		\draw[white] (0,0) rectangle (0,0); % para setear el 0.
+
+	% Logo LCC
+		\path (18,28.5) node {\includegraphics[scale=0.1]{LambdaBN.pdf}};
+
+	% JCC
+		\path (5,28.75) node {\normalsize\bf XIII JORNADAS DE};
+		\path (5,28.25) node {\normalsize\bf CIENCIAS DE LA COMPUTACIÓN};
+
+	% Hoja ? de ?
+		%\path (18,0.5) node {\footnotesize Hoja {\thepage} de \pageref*{LastPage}};
+
+	% Lineas
+		\draw[thick] (0.25,27.5) rectangle (20.5,27.5);
+		%\draw[thick] (0.25,1) rectangle (20.5,1);
+
+	\end{tikzpicture}
+}
+
+% Tipo de letra
+%\renewcommand{\familydefault}{\sfdefault}
+%---------------------------------------------------------------------------------------------------
+
+
+%---------------------------------------------------------------------------------------------------
+% Otros efectos
+\everymath{\displaystyle}
+%---------------------------------------------------------------------------------------------------
+
+
+%---------------------------------------------------------------------------------------------------
+% Comandos y macros
+
+% Colores
+\definecolor{colorJCC}{rgb}{1, 0.4, 0}
+
+
+% Espacios truchos
+\def\ne{\vspace{-12pt}} % negative enter
+\def\se{$ $\\}		% simple enter
+\def\de{\se\newline}	% doble enter
+\def\te{\de\newline}	% triple enter
+
+
+% Separar en sílabas
+%\hyphenation{in-te-rrup-ci\'on}
+
+
+% Dibujos
+\newenvironment{dibujo}{\begin{center}\begin{tikzpicture}}{\end{tikzpicture}\end{center}}
+\newenvironment{dibujoNC}{\begin{tikzpicture}}{\end{tikzpicture}}
+
+% Tablero
+\newcommand{\tablero}[1]{
+	\pgfmathsetmacro{\boardsize}{#1}
+
+	\draw (0,0) rectangle (\boardsize,\boardsize);
+	\foreach \i in {1,...,\boardsize}{
+		\draw[-] (\i,0) -- (\i,\boardsize);
+		\draw[-] (0,\i) -- (\boardsize,\i);
+	}
+}
+
+
+% Descripcion charla
+\newcommand{\charla}[3]{
+	{\large\bf#1}\\
+	{\bf por #2}\\
+	#3\\
+}
+% \charla{Título}{Autor}{Descripción}
+
+%---------------------------------------------------------------------------------------------------
+
+\def\barra{\textbackslash}
+
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\renewcommand{\arraystretch}{2.5}
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\begin{document}
+%\renewcommand{\arraystretch}{0.8}
+\begin{center}{\LARGE\bf Cronograma de actividades}\\ %\end{center}
+%\se
+%\begin{center}
+%\scalebox{0.85}{
+%\begin{tabular}{|c|C{130pt}|C{130pt}|C{130pt}|} \hline
+%\bf Hora $|$ Día & \large\bf Miércoles 15 & \large\bf Jueves 16 & \large\bf Viernes 17 \\ \hline
+%
+%\bf 9:00 - 12:00 & \multirow{2}{*}{} & Taller: Detectando corrupción de memoria con Ptrace en aplicaciones reales & Taller: Detectando corrupción de memoria con Ptrace en aplicaciones reales\\ \cline{1-1}\cline{3-4}
+%
+%\bf 12:00 - 14:00 & & \multicolumn{2}{c|}{\large\bf Almuerzo}\\[-5pt] \cline{1-1}\cline{3-4}
+%
+%\bf 14:00 - 14:45 &  & \multirow{2}{130pt}{\centering Métodos de navegación basada en visión para robots móviles} & \multirow{2}{130pt}{\centering Inteligencia Artificial y Gobierno Electrónico}\\ \cline{1-2}
+%
+%\bf 14:45 - 15:00 & \bf Acto de Apertura & & \\ \hline
+%
+%\bf 15:00 - 16:00 & Desarrollo de aplicaciones móviles multi-plataforma con Intel® XDK & IEPY: Una plataforma para Extracción de Información en Python & Análisis estático con clang-llvm\\ \hline
+%
+%\bf 16:00 - 17:00 & Innovación tecnológica en Neuralsoft & \multicolumn{2}{c|}{\large\bf Coffee Break}\\ \hline
+%
+%\bf 17:00 - 18:00 & \large\bf Coffee Break & Imaginando... & Lambda cálculo módulo isomorfismos de tipos\\ \hline
+%
+%\bf 18:00 - 19:00 & Ingeniería de Confiabilidad en Google & Recuperación de Información de Gran Escala & Certificación de algoritmos criptográficos constant-time\\ \hline
+%
+%\bf 19:00 - 20:00 & \begin{tabular}{C{118pt}}\small\textbf{¿Para qué estudiar Ciencias de la Computación?}\\[-12pt] Muestra de trabajos prácticos\end{tabular} & Bitcoin en profundidad: Un viaje criptográfico & \large\bf Entrega de diplomas\\ \hline
+%
+%\bf 22:45 - $\infty$ & \multicolumn{2}{c|}{} & \large\bf Cena de camaradería{\small $^{(*)}$}\\ \hline
+%\end{tabular}
+%}
+%\end{center}
+%\begin{center}
+\hspace*{20pt}\includegraphics[scale=.85]{horario.pdf}
+\end{center}
+
+%---------------------------------------------------------------------------------------------------
+\newpage
+
+\charla
+{Ciencias de la Computación en la escuela Argentina}
+{Pablo Factorovich (Fundación Sadosky)}
+{La iniciativa interministerial Program.AR ha conseguido importantes avances en pos de la inclusión de contenidos de ciencias de la computación dentro de los contenidos obligatorios de las escuelas argentinas. En este charla comentaremos dichos progresos, los pasos que esta iniciativa encara para el futuro, así como la importancia de la comunidad académica de las Ciencias de la Computación en esta problemática.}
+
+\charla
+{Finding scalable solution for a worldwide audience}
+{Sergio Giro (Google)}
+{Because of worldwide massive impact, Google engineers face unique engineering problems every day. As a smart community, once they find a solution to an oft-recurring challenge they build a tool as to avoid reinventing the wheel every time. Tools are improved over time, and extended in order to fit new cases, leading to a mighty tool shed. In this talk I'll highlight some of these challenges and explain what our tools do to solve it, giving you a glance of how we work in this environment.}
+
+\charla
+{Innovación tecnológica en NeuralSoft}
+{Gustavo Viceconti (NeuralSoft)}
+{NeuralSoft, desde sus inicios, se ha caracterizado por la búsqueda de soluciones tecnológicas creativas e innovadoras que mejoren el modo de gestionar las empresas. \\
+Al cabo de 26 años de trayectoria, la empresa rosarina se ha convertido en la principal fábrica de software ERP del país y es pionera y líder en Cloud Computing. Uno de sus principales logros ha sido acercar a las Pymes una tecnología de avanzada que hasta entonces sólo estaba disponible para grandes corporaciones. \\
+NeuralSoft invierte casi el 20\% de su facturación en Investigación y Desarrollo e incorpora mejoras tecnológicas continuas a sus productos. \\
+En permanente alianza con consultores y desarrolladores internacionales, hoy la empresa se prepara para la expansión global con el lanzamiento de una nueva plataforma tecnológica que tiene por objetivo generar un cambio en el paradigma clásico del software ERP para que el usuario pueda anticiparse a los posibles escenarios mediante técnicas de inteligencia artificial y simulación. Esto marcará un antes y un después en el modo de gestionar las empresas.}
+
+\charla
+{¿Para qué estudiar Ciencias de la Computación?}
+{Martín Ceresa y Martín Escarrá (FCEIA - UNR)}
+{TODO TODO TODO TODO TODO\\
+Porque está re bueno, obvio :) \\
+TODO TODO TODO TODO TODO\\}
+
+\charla
+{Programación Competitiva}
+{Mariano Crosetti, Pablo Zimmermann y Martín Villagra (FCEIA - UNR)}
+{La Programación Competitiva ha cobrado popularidad en los últimos años. Es una forma muy amena de profundizar en el uso y entendimiento de Estructuras de Datos y Algoritmos. El objetivo de la charla es iniciar a quién poco (o ningún) contacto ha tenido con el tema, y encauzar a quienes estén interesados a entrenar e incentivar la participación. Se introducirá el tipo de problemas que se trata y la metodología con la que se trabaja a la hora de entrenar algoritmia para competencias. Además los invitaremos a mantenerse en contacto con nosotros y el resto de la comunidad de Argentina y Latinoamérica para entrenar en conjunto.}
+
+\charla
+{Historia Desafiar}
+{Juan Manuel Baruffaldi y Santiago Iwakawa (DesafiAR)}
+{Desafiar es un juego de simulacion de negocios desarrollado por alumnos de la carrera. Busca inventar el espíritu emprendedor y capacitarlos en el camino. Se basa en gamification, es decir, que aprendan jugando.}
+
+\charla
+{Historia Disruptive SCience}
+{Nicolas Pellejero, Juan Manuel Baruffaldi y Santiago Iwakawa (Disruptive SCience)}
+{Emprendimiento que busca mejorar las relaciones de los clientes con las marcas por medio de la ciencia. Utiliza reconocimientos de rostros y de emociones por video. Historia de nuestro paso por la carrera y los trabajos hechos que llevaron al nacimiento de este proyecto.}
+
+\charla
+{Introducción a la computación cuántica}
+{Alejandro Díaz-Caro (UNQ)}
+{La computación cuántica es un paradigma de computación basado en la física cuántica. La idea es tomar la descripción de la evolución de sistemas físicos cuánticos como un proceso de cómputo: éstos tienen un estado inicial, un estado final, y la evolución del sistema puede ser descripta a través de "operadores". Uno de los principales intereses en computación cuántica desde las ciencias de la computación es que existen algoritmos en este modelo de cómputo que tienen ganancias en complejidad con respecto a algoritmos clásicos, en algunos casos llegando hasta ganancias exponenciales. En este mini-curso de dos días se verá una introducción a la computación cuántica, así como algunos ejemplos de algoritmos y una aplicación a criptografía.}
+
+\charla
+{La Computación en Tiempos de Paralelismo}
+{María Fabiana Piccoli (FCFMyN - UNSL)}
+{El auge y popularidad de nuevas tecnologías y la constante demanda de rápidos resultados en las aplicaciones hizo imprescindible el estudio de nuevas técnicas y metodologías de programación, la computación paralela es una de ellas.
+Resolver un problema aplicando técnicas de computación paralela implica plantear una solución computacional donde varias unidades de procesamiento (hardware y software) trabajan cooperativamente y al mismo tiempo para obtener resultados más rápido que en la CPU o en un tiempo razonable.
+Varios aspectos deben ser considerados en una solución paralela, pudiendo existir varias o incluso ninguna, todo depende de la naturaleza del problema a resolver.
+Hoy en día, los recursos computacionales existentes nos ofrecen un ambiente apto para el desarrollo de computación paralela. Esto no se limita a las arquitecturas multi-core, sino también a otros distintos dispositivos. Un ejemplo de ello son las placas de video o co-procesadores gráficos (GPUs). Ellos constituyen una arquitectura paralela, de bajo costo y alto rendimiento, capaz de resolver problemas de propósito general aplicando técnicas paralelas.
+La presente charla tiene como objetivo exponer la necesidad de incluir técnicas paralelas en la soluciones computacionales de problemas de propósito general, mostrando que las GPUs constituyen una opción válida a la hora de pensar en arquitecturas paralelas de cómputo masivo. Finalmente resultados de su utilización son detallados.}
+
+\charla
+{Análisis de resiliencia en sistemas embebidos}
+{Pedro D'Argenio (FaMAF - UNC)}
+{El estado actual de la tecnología demanda que los sistemas de computación brinden servicios en los que se pueda confiar justificadamente. En consecuencia, un sistema como estos debe tolerar la ocurrencia inesperada de fallas, ataques o accidentes mientras que su ejecución normal continúa respondiendo aceptablemente a parámetros de eficiencia, disponibilidad, confiabilidad, etc. y, obviamente, sin alterar su funcionamiento correcto. La mayoría de los eventos que comprometen el funcionamiento del sistema, al igual que muchas de las actividades en sus componentes, pueden cuantificarse probabilisticamente, lo cual permite hacer un análisis cuantitativo del sistema compuesto. En muchos casos las propiedades a analizar requieren un alto grado de resiliencia. Una propiedad típica es solicitar 99.999\% de disponibilidad (""cinco nueves""). Lograr determinar propiedades cuya probabilidad de falla sea muy baja en sistemas complejos puede ser computacionalmente muy demandante. Para este tipo de problemas se idearon técnicas específicas para la simulación de eventos raros. Debido a su generalidad, nosotros hemos escogido enfocarnos en las denominadas técnicas por división de importancia. La efectividad de esta técnica radica precisamente en encontrar buenas funciones de importancias que reflejen adecuadamente la cercanía del evento raro.
+En esta charla explicaré la técnicas por división de importancia para simulación de eventos raros y nuestro trabajo actual en la derivación automática de funciones de importancia.
+Completaré la charla con un breve resumen de nuestro grupo de investigación (http://dsg.famaf.unc.edu.ar) y de las actividades relacionadas a este proyecto específico de análisis de resiliencia.}
+
+\charla
+{Cotas Inferiores de Complejidad e Ingeniería de Software}
+{Andrés Rojas Paredes (FCEyN - UBA)}
+{Una cota inferior de complejidad permite afirmar que todos los algoritmos que resuelven un problema dado, tienen al menos una determinada complejidad, esto incluye a los algoritmos conocidos hoy, como también los algoritmos que podrían ser descubiertos en el futuro. Este tipo de resultado refleja un límite para la capacidad de hacer un software eficiente. \\
+Sin embargo, obtener una cota inferior no es facil y requiere definir el modelo de cómputo sobre el que se definen los algoritmos y la medida de complejidad. La dificultad de este procedimiento es que los modelos de cómputo clásicos, como la máquina de Turing, son muy generales y no permiten resultados significativos para ciertos problemas, como por ejemplo algoritmos de eliminación de variables. \\
+En esta charla se presenta un modelo de cómputo que incorpora nociones de Ingeniería de Software. Esta característica permite demostrar cotas inferiores de complejidad exponenciales para los algoritmos actuales de eliminación de variables. En particular, nos referimos a algoritmos construidos bajo el paradigma orientado a objetos que implementan requerimientos no funcionales como la robustez. \\
+Este modelo fue realizado en el marco de mi tesis de doctorado bajo la dirección del doctor Joos Heintz.}
+
+\charla
+{Sobre enseñanza de Matemática y Programación en una carrera de Ingeniería de Software}
+{Álvaro Tasistro (Universidad ORT - Uruguay)}
+{La intención es presentar y discutir propuestas y experiencias acerca de cursos fundamentales de Matemática y Programación en el contexto de carreras de Ingeniería de Software, así como sus premisas iniciales, de las cuales las principales son:
+\begin{itemize}
+\item Que la Ingeniería de Software se beneficiaría de la incorporación de una teoría que habilitara a los practicantes a razonar metódica y explícitamente sobre los programas; es decir, una matemática de los programas, en contraposición al tratamiento de éstos como ""cajas negras"". (Llamamos a esto ""Programación como Matemática"".)
+\item Que es interesante investigar el desarrollo de una Matemática cuyos objetos son datos y programas, siendo sus nociones básicas la de tipo de dato y algoritmo. (Llamamos a esto ""Matemática como Programación"".)
+\end{itemize}
+Siendo que ninguna de esas dos ideas es enteramente novedosa, quizá lo sea su puesta en obra en el plano de la educación en cursos concretos basados en la Programación Funcional y la Matemática fundamentada en ella. Esta experiencia se pondrá a consideración en la charla.}
+
+\charla
+{Localización y Reparación Automática de Fallas}
+{Marcelo Frias (ITBA)}
+{En esta charla presentaré trabajo reciente sobre localización automática de fallas a partir de código con contratos, así como técnicas para la reparación automática de las mismas utilizando mutación de código. En la charla discutiré los fundamentos de las técnicas y presentaré demos de herramientas que las implementan. Presentaré también temas de trabajo dentro del grupo que pueden ser de interés para estudiantes que deseen continuar estudios de posgrado. \\
+Trabajo conjunto con Luciano Zemín, Santiago Bermúdez, Nazareno Aguirre, Simón Gutierrez Brida y Santiago Perez de Rosso.}
+
+\charla
+{CIAA NXP: Alcances y limitaciones de un port basado en Buildroot/Linux}
+{Ezequiel García (VanguardiaSur)}
+{Hace ya varios años que el kernel Linux soporta arquitecturas sin MMU. En particular, el soporte para ARM cortex-M fue agregado oficialmente en 2013 y el soporte para NXP LPC43xx en 2015. \\
+Esta charla se divide en tres partes. En primer lugar, haremos un repaso de los componentes que permiten correr Linux en la CIAA. \\
+Luego, se analizarán las limitaciones que surgen de correr un sistema basado en Linux sobre una arquitectura sin MMU. \\
+Finalmente, relevaremos el estado actual del soporte, tanto del kernel como del stack en espacio de usuario.}
+
+\charla
+{Ciencias de la Computación en la UNR: 20 años}
+{Martín Degrati y Raúl Kantor (UNR)}
+{El Dr. Raúl Kantor, primer Director de la carrera, junto al Lic. Martín Degrati, primer egresado de la Licenciatura en Cs. de la Computación en Rosario, comentarán sobre la historia de la carrera en Rosario.}
+
+{\large\bf{Entrega de diplomas}}\\
+{El Departamento de Ciencias de la Computación reconoce a aquellos alumnos que han completado el cursado de la Licenciatura en Ciencias de la Computación en el año 2015}
+
+%---------------------------------------------------------------------------------------------------
+\newpage
+
+\begin{center}\LARGE\bf Juegos\end{center}
+%¿Estás aburrido? Te proponemos actividades que no molestan a los disertantes.\\
+
+\section{Regex}
+El crucigrama Regex es un juego similar al sudoku o al crucigrama tradicional, donde debes adivinar las letras correctas en las líneas horizontales y verticales de la grilla. Las pistas están dadas como expresiones regulares.\\
+¿Cómo son los patrones de las expresiones regulares? Bueno, puede ser muy simple como ``AB'', donde deben ir la letra A y la B en ese orden. Hay algunos caracteres especiales que indican cuántas veces puede aparecer una letra en el texto, por ejemplo: [AB]* indica que A o B pueden ocurrir cero o más veces. La sintaxis se puede poner un poco más complicada que esto.\\
+
+\underline{Tablas de referencia}:
+\begin{center}
+\begin{tabular}{|c|c|}
+\multicolumn{2}{c}{\bf Cuantificadores}\\ \hline
+$n^{*}$ & 0 o más $n$ \\ \hline
+$n^{+}$ & 1 o más $n$ \\ \hline
+%$n?$ & 0 o 1 $n$ \\ \hline
+%$n\{2\}$ & Exactamente 2 $n$ \\ \hline
+%$n\{2,\}$ & 2 o más $n$ \\ \hline
+%$n\{2,4\}$ & 2, 3 o 4 $n$
+\end{tabular}
+\hspace{50pt}
+\begin{tabular}{|c|c|}
+\multicolumn{2}{c}{\bf Rangos}\\ \hline
+$.$ & Cualquier caracter \\ \hline
+$(A|B)$ & $A$ o $B$ \\ \hline
+%$(\ldots)$ & Grupo \\ \hline
+$[ABC]$ & Rango ($A$, $B$ o $C$) \\ \hline
+$[^{\wedge} ABC]$ & No $A$, no $B$, no $C$ \\ \hline
+\end{tabular}
+\end{center}
+
+\de
+\begin{center}
+\begin{dibujoNC}
+\tablero{2}
+\path (-1.25,1.5) node {(HE$|$LL$|$O$^{+}$)};
+\path (-1.25,0.5) node {[PLEASE]$^{+}$};
+\path (0.5,3.25) node[rotate=270] {[$^{\wedge}$SPEAK]$^{+}$};
+\path (1.5,3.25) node[rotate=270] {(EP$|$IP$|$EF)};
+\end{dibujoNC}
+\hspace{100pt}
+\begin{dibujoNC}
+\tablero{3}
+\path (-1.5,2.5) node {[DEF][MNO]$^{*}$};
+\path (-1.8,1.5) node {[$^{\wedge}$DJNU]P[ABC]};
+\path (-1,0.5) node {[ICAN]$^{*}$};
+\path (0.5,4.25) node[rotate=270] {[JUNDT]$^{*}$};
+\path (1.5,4.75) node[rotate=270] {(APA$|$OPI$|$OLK)};
+\path (2.5,4.75) node[rotate=270] {(NA$|$FE$|$HE)[CV]};
+\end{dibujoNC}
+\end{center}
+
+\begin{dibujo}
+\tablero{5}
+\path (-1.25,4.5) node {[UGLER]$^{*}$};
+\path (-2,3.5) node {[CAST]$^{*}$REX[PEA]$^{*}$};
+\path (-1.25,2.5) node {[SIRES]$^{*}$};
+\path (-1.5,1.5) node {H$^{*}$(AY$|$ED)$^{*}$};
+\path (-1.75,0.5) node {(L$|$OFT$|$ON)$^{*}$};
+\path (0.5,6.25) node[rotate=270] {[ARK]$^{*}$O.$^{*}$};
+\path (1.5,6.25) node[rotate=270] {(.).$^{*}$\barra1N\barra1};
+\path (2.5,6.5) node[rotate=270] {(SOD$|$DO$|$GE)$^{*}$};
+\path (3.5,6) node[rotate=270] {[FAXUS]$^{*}$};
+\path (4.5,6.25) node[rotate=270] {[LOPITY]$^{*}$};
+\end{dibujo}
+
+
+\section{Remodelando el DCC}
+Se quieren poner paneles, siguiendo las líneas de la cuadrícula, de modo que cada una de estas cuatro ramas de la Licenciatura en Ciencias de la Computación tenga un sector individual y separado de los demás. Además, estos sectores tienen que ser de igual tamaño y forma.\\
+¿Cómo se puede hacer?
+
+\begin{dibujo}[scale=2.2]
+\tablero{6}
+\path (0.5,5.6) node {\footnotesize Algoritmos y}; \path (0.5,5.4) node {\footnotesize Lenguajes};
+\path (2.5,3.6) node {\footnotesize Algoritmos y}; \path (2.5,3.4) node {\footnotesize Lenguajes};
+
+\path (3.5,3.6) node {\footnotesize Teoría de la}; \path (3.5,3.4) node {\footnotesize Computación};
+\path (4.5,1.6) node {\footnotesize Teoría de la}; \path (4.5,1.4) node {\footnotesize Computación};
+
+\path (2.5,2.6) node {\footnotesize Sistemas}; \path (2.5,2.4) node {\footnotesize Operativos};
+\path (2.5,1.6) node {\footnotesize Sistemas}; \path (2.5,1.4) node {\footnotesize Operativos};
+
+\path (3.5,2.6) node {\footnotesize Ingeniería}; \path (3.5,2.4) node {\footnotesize de Software};
+\path (3.5,1.6) node {\footnotesize Ingeniería}; \path (3.5,1.4) node {\footnotesize de Software};
+\end{dibujo}
+
+
+\section{Risa malvada}
+Cerebro quiere elegir el mayor subconjunto de estas palabras tales que no haya dos palabras tales que una es prefijo de la otra. ¿Cuáles puede elegir?
+\begin{center}
+AJAJ\\
+AJA\\
+JAJ\\
+AJAJAJJA\\
+JAJAJ\\
+AJJA\\
+JAJ\\
+AJ\\
+JAJJJA\\
+\end{center}
+
+
+\section{Uno de grafos}
+En la Estrella de la Muerte hay varios corredores que conectan ciertos puntos importantes, como se muestra en la figura.\\
+(Los corredores no se intersecan en otras partes, aunque en la figura parezca que sí.)
+\begin{center}
+\includegraphics[scale=0.375]{Estrella_de_la_muerte.png}
+\end{center}
+A Darth Vader le interesa proteger esos puntos, y para ello decide colocar cámaras de seguridad en algunos de ellos.\\
+Cada cámara controla el punto en el que se encuentra y los puntos vecinos (dos puntos son vecinos si están unidos por un corredor).\\
+Les ha encomendado esta tarea a ustedes. Pero hay un problema: no tienen mucho tiempo para colocarlas y saben que Lord Vader puede utilizar la fuerza para matarlos si no cumplen lo pedido.\\
+¿Cuál es el mínimo número de cámaras que se deben colocar para controlar todos los puntos?
+
+
+%---------------------------------------------------------------------------------------------------
+%\newpage
+%\begin{center}
+%\includegraphics[scale=0.5,angle=90]{mygoto.png}
+%\end{center}
+
+\end{document}

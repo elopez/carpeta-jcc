@@ -1,0 +1,59 @@
+\documentclass[a4paper, 12pt]{report}
+
+%\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{polyglossia}
+\setdefaultlanguage{spanish}
+
+\usepackage[margin=0.25in]{geometry}
+\usepackage{pdflscape}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage[gray]{xcolor, colortbl}
+
+\renewcommand{\tabularxcolumn}[1]{>{\small}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+\newlength{\hora}
+\setlength{\hora}{6.7ex}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{landscape}
+\begin{table}
+    \begin{tabularx}{\linewidth}{l || >{\centering}X | >{\centering}X | >{\centering\arraybackslash}X | N}
+		  & Miércoles 21 & Jueves 22 & Viernes 23 &\\
+\hline\hline
+    09:00 - 12:00 & ~                                                                         & \multicolumn{2}{c|}{Programación Competitiva}                          &\\[3\hora]
+\cline{1-1}\cline{3-5}
+    12:00 - 13:00 & ~                                                                         & \multicolumn{2}{c|}{Almuerzo}                                          &\\[1\hora]
+\cline{1-1}\cline{3-5}
+    13:00 - 13:45 & ~                                                                         & \multicolumn{2}{c|}{\multirow{3}{*}[-2.3em]{Introducción a la computación cuántica}} &\\[.75\hora]
+\cline{1-2}
+    13:45 - 14:00 & Acto de apertura                                                          & \multicolumn{2}{c|}{} &\\[.75\hora]
+\cline{1-2}
+    14:00 - 15:00 & Ciencias de la Computación en la escuela Argentina                        & \multicolumn{2}{c|}{} &\\[1\hora]
+\hline
+    15:00 - 16:00 & Finding scalable solution for a worldwide audience                        & La Computación en Tiempos de Paralelismo                                & Matemática y Programación en una carrera de Ingeniería de Software     &\\[1\hora]
+\hline
+    16:00 - 17:00 & Innovación tecnológica en NeuralSoft                                      & Introducción a la demostración interactiva de teoremas y a sus desafíos & Localización y Reparación Automática de Fallas                         &\\[1\hora]
+\hline
+    17:00 - 17:30 & \multicolumn{3}{c|}{Coffee Break} &\\[.5\hora]
+\hline
+    17:30 - 18:30 & ¿Para qué estudiar Ciencias de la Computación?                            & Análisis de resiliencia en sistemas embebidos                           & CIAA NXP: Alcances y limitaciones de un port basado en Buildroot/Linux &\\[1\hora]
+\hline
+    18:30 - 19:30 & Programación Competitiva, Historia Desafiar e Historia Disruptive SCience & Cotas Inferiores de Complejidad e Ingeniería de Software                & Ciencias de la Computación en la UNR: 20 años                          &\\[1\hora]
+\hline
+    19:30 - 20:00 & \multicolumn{2}{c|}{}                                                                                                                                & Entrega de diplomas                                                    &\\[.5\hora]
+\cline{1-1}\cline{4-5}
+    21:00 - $\infty$     & \multicolumn{2}{c|}{}                                                                                                                         & Cena de camaradería                                                    &\\[1\hora]
+\hline
+    \end{tabularx}
+\end{table}
+\end{landscape}
+
+
+
+\end{document} 
