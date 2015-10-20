@@ -13,6 +13,7 @@
 \usepackage{tikz}
 \usepackage{lastpage}
 \usepackage{eso-pic}
+\usepackage{wrapfig}
 
 %---------------------------------------------------------------------------------------------------
 % Estilo de la página
@@ -84,12 +85,19 @@
 \newcommand{\tablero}[1]{
 	\pgfmathsetmacro{\boardsize}{#1}
 
-	\draw (0,0) rectangle (\boardsize,\boardsize);
-	\foreach \i in {1,...,\boardsize}{
-		\draw[-] (\i,0) -- (\i,\boardsize);
-		\draw[-] (0,\i) -- (\boardsize,\i);
+	\foreach \i in {0,...,\boardsize}{
+		\foreach \j in {0,...,\boardsize}{
+			\fill[bola] (\i,\j) circle(2.3pt);
+		}
 	}
 }
+
+\newcommand{\tableroraya}[1]{
+	\pgfmathsetmacro{\boardsize}{#1}
+	\draw[step=1cm,gray,very thin] (0,0) grid (\boardsize,\boardsize);
+	\draw[ultra thick,-] (0,0) rectangle (\boardsize,\boardsize);
+}
+
 
 
 % Descripcion charla
@@ -110,6 +118,27 @@
 
 %--------------------------------------------------------------------------------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\tikzset{
+    bola/.style =  {fill=black, opacity=1},
+    digito/.style = {font=\large\ttfamily},
+}
+
+
+
+
+\usepackage{tcolorbox}% http://ctan.org/pkg/tcolorbox
+\definecolor{darkpad}{gray}{0.7}% Rule colour
+\definecolor{lightpad}{gray}{1}% Rule colour
+\makeatletter
+\newcommand{\mousepad}[2]{%
+  \begin{tcolorbox}[colframe=black,colback=#1,boxrule=0.5pt,arc=4pt,
+      left=6pt,right=6pt,top=6pt,bottom=6pt,boxsep=0pt,width=8em,height=6em,nobeforeafter,halign=center,valign=center]
+    \bf{#2}
+  \end{tcolorbox}
+}
+\makeatother
+
 
 \begin{document}
 %\renewcommand{\arraystretch}{0.8}
@@ -256,114 +285,142 @@ Finalmente, relevaremos el estado actual del soporte, tanto del kernel como del 
 \begin{center}\LARGE\bf Juegos\end{center}
 %¿Estás aburrido? Te proponemos actividades que no molestan a los disertantes.\\
 
-\section{Regex}
-El crucigrama Regex es un juego similar al sudoku o al crucigrama tradicional, donde debes adivinar las letras correctas en las líneas horizontales y verticales de la grilla. Las pistas están dadas como expresiones regulares.\\
-¿Cómo son los patrones de las expresiones regulares? Bueno, puede ser muy simple como ``AB'', donde deben ir la letra A y la B en ese orden. Hay algunos caracteres especiales que indican cuántas veces puede aparecer una letra en el texto, por ejemplo: [AB]* indica que A o B pueden ocurrir cero o más veces. La sintaxis se puede poner un poco más complicada que esto.\\
+\section*{Que pase el que sigue}
+\begin{itemize}
+\item Encontrá el elemento que sigue en las siguientes sucesiones:
+\item 2, 2, 4, 4, 2, 6, 6, 2, 8, 8, 16, 8, 24, 8, 32, $\dots$
+\item 61, 23, 46, 821, 652, $\dots$
+\item 2, 3, 5, 7, 1, 3, 7, 9, 6, $\dots$
+\item 21, $e$, $\sqrt{-1}$, 93, 30 $\dots$
+\item 2, 6, 6, 7, 8, 8, 2, 2, 4, 6 $\dots$ 
+\item 1, 11, 21, 1211, 111221, 312211, $\dots$
+\item 1888, 1892, 1896, 1904, 1908, $\dots$
+\item 1, 3, 7, 12, 18, 26, 35, 45, 56, $\dots$
+\end{itemize}
 
-\underline{Tablas de referencia}:
-\begin{center}
-\begin{tabular}{|c|c|}
-\multicolumn{2}{c}{\bf Cuantificadores}\\ \hline
-$n^{*}$ & 0 o más $n$ \\ \hline
-$n^{+}$ & 1 o más $n$ \\ \hline
-%$n?$ & 0 o 1 $n$ \\ \hline
-%$n\{2\}$ & Exactamente 2 $n$ \\ \hline
-%$n\{2,\}$ & 2 o más $n$ \\ \hline
-%$n\{2,4\}$ & 2, 3 o 4 $n$
-\end{tabular}
-\hspace{50pt}
-\begin{tabular}{|c|c|}
-\multicolumn{2}{c}{\bf Rangos}\\ \hline
-$.$ & Cualquier caracter \\ \hline
-$(A|B)$ & $A$ o $B$ \\ \hline
-%$(\ldots)$ & Grupo \\ \hline
-$[ABC]$ & Rango ($A$, $B$ o $C$) \\ \hline
-$[^{\wedge} ABC]$ & No $A$, no $B$, no $C$ \\ \hline
-\end{tabular}
-\end{center}
 
-\de
-\begin{center}
-\begin{dibujoNC}
-\tablero{2}
-\path (-1.25,1.5) node {(HE$|$LL$|$O$^{+}$)};
-\path (-1.25,0.5) node {[PLEASE]$^{+}$};
-\path (0.5,3.25) node[rotate=270] {[$^{\wedge}$SPEAK]$^{+}$};
-\path (1.5,3.25) node[rotate=270] {(EP$|$IP$|$EF)};
-\end{dibujoNC}
-\hspace{100pt}
-\begin{dibujoNC}
-\tablero{3}
-\path (-1.5,2.5) node {[DEF][MNO]$^{*}$};
-\path (-1.8,1.5) node {[$^{\wedge}$DJNU]P[ABC]};
-\path (-1,0.5) node {[ICAN]$^{*}$};
-\path (0.5,4.25) node[rotate=270] {[JUNDT]$^{*}$};
-\path (1.5,4.75) node[rotate=270] {(APA$|$OPI$|$OLK)};
-\path (2.5,4.75) node[rotate=270] {(NA$|$FE$|$HE)[CV]};
-\end{dibujoNC}
-\end{center}
+\section*{Robot buscaminas}
 
-\begin{dibujo}
-\tablero{5}
-\path (-1.25,4.5) node {[UGLER]$^{*}$};
-\path (-2,3.5) node {[CAST]$^{*}$REX[PEA]$^{*}$};
-\path (-1.25,2.5) node {[SIRES]$^{*}$};
-\path (-1.5,1.5) node {H$^{*}$(AY$|$ED)$^{*}$};
-\path (-1.75,0.5) node {(L$|$OFT$|$ON)$^{*}$};
-\path (0.5,6.25) node[rotate=270] {[ARK]$^{*}$O.$^{*}$};
-\path (1.5,6.25) node[rotate=270] {(.).$^{*}$\barra1N\barra1};
-\path (2.5,6.5) node[rotate=270] {(SOD$|$DO$|$GE)$^{*}$};
-\path (3.5,6) node[rotate=270] {[FAXUS]$^{*}$};
-\path (4.5,6.25) node[rotate=270] {[LOPITY]$^{*}$};
+\begin{wrapfigure}{r}{0.34\textwidth}
+\vspace{-2em}
+\begin{dibujo}[scale=0.75]
+\tablero{8}
+\node[digito] at (0.5, 0.5) {3};
+\node[digito] at (0.5, 2.5) {3};
+\node[digito] at (0.5, 5.5) {3};
+\node[digito] at (0.5, 7.5) {3};
+\node[digito] at (2.5, 0.5) {3};
+\node[digito] at (2.5, 2.5) {3};
+\node[digito] at (2.5, 5.5) {3};
+\node[digito] at (2.5, 7.5) {3};
+\node[digito] at (5.5, 0.5) {3};
+\node[digito] at (5.5, 2.5) {3};
+\node[digito] at (5.5, 5.5) {3};
+\node[digito] at (5.5, 7.5) {3};
+\node[digito] at (7.5, 0.5) {3};
+\node[digito] at (7.5, 2.5) {3};
+\node[digito] at (7.5, 5.5) {3};
+\node[digito] at (7.5, 7.5) {3};
+\node[digito] at (3.5, 1.5) {2};
+\node[digito] at (4.5, 1.5) {1};
+\node[digito] at (3.5, 6.5) {0};
+\node[digito] at (4.5, 6.5) {2};
+\node[digito] at (1.5, 3.5) {1};
+\node[digito] at (1.5, 4.5) {1};
+\node[digito] at (6.5, 4.5) {0};
+\node[digito] at (6.5, 3.5) {2};
 \end{dibujo}
+\vspace{-2.1em}
+\end{wrapfigure}
 
+El robot buscaminas es una versión del buscaminas muy jugada por los LCCs
+de Washington. Fue creada por el señor Factura Puertas hace muchos años,
+y si bien los gráficos del juego dejan bastante que desear, es muy adictivo. \\
 
-\section{Remodelando el DCC}
-Se quieren poner paneles, siguiendo las líneas de la cuadrícula, de modo que cada una de estas cuatro ramas de la Licenciatura en Ciencias de la Computación tenga un sector individual y separado de los demás. Además, estos sectores tienen que ser de igual tamaño y forma.\\
-¿Cómo se puede hacer?
+Para ganar hay que guiar a nuestro robot a través del campo minado,
+trazando un circuito cerrado (es decir, un camino que
+empiece y termine en el mismo punto). Para esto debemos dibujar
+segmentos horizontales y verticales que conecten puntos adyacentes de
+la cuadrícula. El circuito no puede pasar dos veces por un mismo punto, y
+los números en las casillas indican cuántos de los cuatro lados que lo
+rodean forman parte del circuito. ¿Te animás a pasar el nivel de la derecha?
 
-\begin{dibujo}[scale=2.2]
-\tablero{6}
-\path (0.5,5.6) node {\footnotesize Algoritmos y}; \path (0.5,5.4) node {\footnotesize Lenguajes};
-\path (2.5,3.6) node {\footnotesize Algoritmos y}; \path (2.5,3.4) node {\footnotesize Lenguajes};
+\section*{Donde dice donde dice debe decir debe decir, y donde dice debe decir debe decir donde dice}
 
-\path (3.5,3.6) node {\footnotesize Teoría de la}; \path (3.5,3.4) node {\footnotesize Computación};
-\path (4.5,1.6) node {\footnotesize Teoría de la}; \path (4.5,1.4) node {\footnotesize Computación};
+Ayer por la noche, Julio entró al castillo de Sir Casteador a recuperar su
+auto-grafo original que Casteador le había robado. Sin embargo, se tropezó
+y tiró la preciada colección de pads blancos y negros del Sir y se desordenaron.
+¡Ayudalo a ordenarlos antes de que Sir Casteador lo descubra!
 
-\path (2.5,2.6) node {\footnotesize Sistemas}; \path (2.5,2.4) node {\footnotesize Operativos};
-\path (2.5,1.6) node {\footnotesize Sistemas}; \path (2.5,1.4) node {\footnotesize Operativos};
+En total hay 8 pads con distintas inscripciones: la mitad son
+blancos y el resto son negros. Julio sabe que estaban ordenados uno
+atrás de otro, de manera que todas las frases resulten verdaderas.
 
-\path (3.5,2.6) node {\footnotesize Ingeniería}; \path (3.5,2.4) node {\footnotesize de Software};
-\path (3.5,1.6) node {\footnotesize Ingeniería}; \path (3.5,1.4) node {\footnotesize de Software};
+\mbox{}\hfill
+\mousepad{lightpad}{Los dos siguientes son negros}\hfill
+\mousepad{lightpad}{Los dos siguientes son de distinto color}\hfill
+\mousepad{lightpad}{El anterior es del mismo color que el siguiente}\hfill
+\mousepad{lightpad}{Hay tantos pads negros antes como después}\hfill\mbox{}\\
+
+\hfill
+\mousepad{darkpad}{El anterior es del mismo color que el siguiente}\hfill
+\mousepad{darkpad}{El anterior es blanco}\hfill
+\mousepad{darkpad}{Los dos siguientes son del mismo color}\hfill
+\mousepad{darkpad}{El anterior es negro}\hfill\mbox{}
+
+\section*{El problema no es Sir Casteador}
+
+\begin{wrapfigure}{r}{0.38\textwidth}
+\vspace{-2.1em}
+\begin{dibujo}[scale=0.85]
+\tableroraya{8}
+\draw[ultra thick,-] (3,0) -- (3,1) -- (1,1) -- (1,3) -- (0,3);
+\draw[ultra thick,-] (3,8) -- (3,7) -- (1,7) -- (1,5) -- (0,5);
+\draw[ultra thick,-] (5,0) -- (5,1) -- (7,1) -- (7,3) -- (8,3);
+\draw[ultra thick,-] (5,8) -- (5,7) -- (7,7) -- (7,5) -- (8,5);
+
+\draw[ultra thick,-] (1,3) -- (1,4) -- (2,4) -- (2,7);
+\draw[ultra thick,-] (3,1) -- (3,6) -- (5,6) -- (5,7);
+\draw[ultra thick,-] (4,6) -- (4,2) -- (6,2) -- (6,3) -- (5,3) -- (5,4) -- (7,4) -- (7,5);
 \end{dibujo}
+\vspace{-2.1em}
+\end{wrapfigure}
+
+El malvado computólogo Sir Casteador ha regresado para instaurar una
+época de terror en la LCC, y esta vez es más peligroso que nunca. Cuentan
+los antiguos \emph{diskettes} que para poder derrotar a Sir Casteador, uno
+debe primero encontrar y destruir su colección de discos de Arjona,
+que están escondidos en algunas casillas del tablero de la derecha. \\
+Sabemos que en cada fila, en cada columna y en cada región remarcada hay
+exactamente un disco, y que dos casillas que contengan un disco no pueden
+ser vecinas (¡ni siquiera en diagonal!). \\
+Ayúdennos a salvar al mundo de la amenaza de Arjona y Sir Casteador,
+indicando en qué casillas están escondidos los discos. Tal vez debas
+asistir al taller de programación competitiva para mejorar tus
+habilidades si es que no puedes lograrlo rápidamente.
+
+\section*{Zoolander}
+\begin{wrapfigure}{r}{0pt}
+\vspace{-2.3em}
+\includegraphics[scale=0.4]{zoolander}
+\end{wrapfigure}
+
+Encontrar un camino que vaya desde A hasta B recorriendo el laberinto.
+¿Pensabas que iba a ser fácil? Hay que hacerlo sin doblar a la izquierda
+en ningún momento.
 
 
-\section{Risa malvada}
-Cerebro quiere elegir el mayor subconjunto de estas palabras tales que no haya dos palabras tales que una es prefijo de la otra. ¿Cuáles puede elegir?
-\begin{center}
-AJAJ\\
-AJA\\
-JAJ\\
-AJAJAJJA\\
-JAJAJ\\
-AJJA\\
-JAJ\\
-AJ\\
-JAJJJA\\
-\end{center}
+\section*{Momia}
 
+Hay que completar cada casilla vacía de la pirámide con un dígito del 1 al 9,
+de manera que cada número (exceptuando los de la última fila) sea igual a la suma
+o a la diferencia (en valor absoluto) de los números de las dos casillas que
+están debajo de él.En cada fila NO sombreada todos los números deben ser distintos.
+En cada fila sombreada debe haber al menos un número repetido.
 
-\section{Uno de grafos}
-En la Estrella de la Muerte hay varios corredores que conectan ciertos puntos importantes, como se muestra en la figura.\\
-(Los corredores no se intersecan en otras partes, aunque en la figura parezca que sí.)
-\begin{center}
-\includegraphics[scale=0.375]{Estrella_de_la_muerte.png}
-\end{center}
-A Darth Vader le interesa proteger esos puntos, y para ello decide colocar cámaras de seguridad en algunos de ellos.\\
-Cada cámara controla el punto en el que se encuentra y los puntos vecinos (dos puntos son vecinos si están unidos por un corredor).\\
-Les ha encomendado esta tarea a ustedes. Pero hay un problema: no tienen mucho tiempo para colocarlas y saben que Lord Vader puede utilizar la fuerza para matarlos si no cumplen lo pedido.\\
-¿Cuál es el mínimo número de cámaras que se deben colocar para controlar todos los puntos?
-
+\begin{centering}
+\includegraphics[scale=0.6]{momia}
+\end{centering}
 
 %---------------------------------------------------------------------------------------------------
 %\newpage
